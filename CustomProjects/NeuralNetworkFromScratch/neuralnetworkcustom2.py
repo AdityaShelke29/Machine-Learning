@@ -7,6 +7,8 @@ import random
 import pickle
 import gzip
 
+from matplotlib import pyplot as plt
+
 class Network(object): 
     # The following class works to create a neural network that has 
     # the goal of classifying digits. It has been developed with help 
@@ -283,4 +285,8 @@ print("Epoch -1: {} / {}".format(str(network.evaluate(test_data)), len(test_data
 network.stochasticgradientdescent(training_data, 10, 10, 3.0, test_data = test_data)
 
 for x in range(len(validation_data)): 
+    image = np.array(validation_data[x][0], dtype = 'float') 
+    image = image.reshape((28, 28))
+    plt.imshow(image, cmap = "gray")
+    plt.show()
     network.test_example(validation_data[x])
